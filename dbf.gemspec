@@ -22,6 +22,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'bindata', '~> 1.4.2'
   s.add_dependency 'fastercsv', '~> 1.5.4'
   s.add_development_dependency 'rspec', '2.6.0'
+  s.add_development_dependency 'ruby-debug'
   # s.add_development_dependency 'metric_fu', '2.0.1'
 end
 
