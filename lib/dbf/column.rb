@@ -4,17 +4,29 @@ module DBF
 
   # DBF::Column stores all the information about a column including its name,
   # type, length and number of decimal places (if any)
-  class Column
+  class Column    
     attr_reader :name, :type, :length, :decimal
+    
+    def self.define(definition, encoding = nil)
+      self.new definition.name, definition.data_type, definition.data_length, definition.decimal, encoding
+    end
 
     # Initialize a new DBF::Column
     #
+    # @param [ColumnDefinition] definition
     # @param [String] name
     # @param [String] type
-    # @param [Fixnum] length
-    # @param [Fixnum] decimal
-    def initialize(name, type, length, decimal, encoding=nil)
-      @name, @type, @length, @decimal, @encoding = clean(name), type, length, decimal, encoding
+    # @param [FixNum] length
+    # @param [FixNum] decimal
+    # @param [String] encoding
+    def initialize(name, type, length, decimal, encoding = nil)
+      definition = ColumnDefinition.new :name => name, 
+        :data_type => type, :data_length => length, :decimal => decimal
+      @name = clean(definition.name)
+      @type = definition.data_type
+      @length = definition.data_length
+      @decimal = definition.decimal
+      @encoding = encoding
 
       raise ColumnLengthError, "field length must be greater than 0" unless length > 0
       raise ColumnNameError, "column name cannot be empty" if @name.length == 0

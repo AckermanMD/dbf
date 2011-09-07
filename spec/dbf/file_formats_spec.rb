@@ -29,16 +29,16 @@ shared_examples_for 'DBF' do
     @table.columns.all? {|column| valid_column_types.should include(column.type)}
   end
   
-  specify "column lengths should be instances of Fixnum" do
-    @table.columns.all? {|column| column.length.should be_an_instance_of(Fixnum)}
+  specify "column lengths should be instances of BinData::Uint8" do
+    @table.columns.all? {|column| column.length.should be_an_instance_of(BinData::Uint8)}
   end
   
   specify "column lengths should be larger than 0" do
     @table.columns.all? {|column| column.length.should > 0}
   end
   
-  specify "column decimals should be instances of Fixnum" do
-    @table.columns.all? {|column| column.decimal.should be_an_instance_of(Fixnum)}
+  specify "column decimals should be instances of BinData::Uint8" do
+    @table.columns.all? {|column| column.decimal.should be_an_instance_of(BinData::Uint8)}
   end
   
   specify "column read accessors should return the attribute after typecast" do

@@ -166,7 +166,7 @@ module DBF
         columns = []
         column_count.times do
           definition = ColumnDefinition.read(@data.read(32))
-          columns << Column.new(definition, @encoding) if definition.data_length > 0
+          columns << Column.define(definition, @encoding) if definition.data_length > 0
         end
         columns
       end
